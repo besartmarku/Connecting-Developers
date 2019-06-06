@@ -6,7 +6,7 @@ const config = require("config");
 const { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 
-const User = require("../../models/Users");
+const User = require("../../models/User");
 
 //@route   POST api/auth
 //@desc    Authenticate user
