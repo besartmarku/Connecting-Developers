@@ -1,37 +1,44 @@
 const express = require("express");
-const request = require("request");
-const config = require("config");
 const router = express.Router();
-const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
+const auth = require("../../middleware/auth");
 
 const Post = require("../../models/Post");
+const Profile = require("../../models/Profile");
+const User = require("../../models/User");
 
-//@route   GET api/posts
-//@desc    Test Route
-//@access  Public
+// @route    POST api/posts
+// @desc     Create a post
+// @access   Private
 router.post(
   "/",
   [
     auth,
     [
-      check("title", "title is required")
+      check("text", "Text is required")
         .not()
         .isEmpty()
     ]
   ],
-  (req, res) => {
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
-      // let posts = await Post.findOne({ user: req.user.id });
+      const user = await User.findById(req.user.id).select("-password");
 
-      const profileFields = {
-        title: "First Name"
-      };
-      // Create
-      profile = new Post(profileFields);
+      const newPost = new Post({
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
+      });
 
-      profile.save();
-      res.json(profile);
+      const post = await newPost.save();
+
+      res.json(post);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
