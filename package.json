@@ -29,11 +29,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.11",
     "moongoose": "0.0.5",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.19.1"
-  },
-  "proxy": "http://127.0.0.1:5000"
+  }
 }
