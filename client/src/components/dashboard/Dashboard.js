@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profile";
 import { Link, Redirect } from "react-router-dom";
 import Spinner from "../layout/Spinner";
-import CreateProfile from "../profile-forms/CreateProfile";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -25,6 +25,7 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <Fragment>
+          <DashboardActions />
           <div className="my-2" />
         </Fragment>
       ) : (

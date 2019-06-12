@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator/check");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
-// const Post = require("../../models/Post");
+const Post = require("../../models/Post");
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -23,7 +23,7 @@ router.get("/me", auth, async (req, res) => {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    res.json(req.user);
+    res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -109,7 +109,7 @@ router.post(
       res.json(profile);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error - profile");
+      res.status(500).send("Server Error");
     }
   }
 );
