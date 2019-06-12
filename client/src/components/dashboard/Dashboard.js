@@ -2,8 +2,9 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profile";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Spinner from "../layout/Spinner";
+import CreateProfile from "../profile/CreateProfile";
 
 const Dashboard = ({
   getCurrentProfile,
