@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
+import { setAlert } from "../../actions/alert";
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -220,4 +221,11 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 
-export default CreateProfile;
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { createProfile, setAlert }
+)(withRouter(CreateProfile));
