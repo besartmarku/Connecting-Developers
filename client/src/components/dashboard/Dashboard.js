@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profile";
 import { Link, Redirect } from "react-router-dom";
 import Spinner from "../layout/Spinner";
-import CreateProfile from "../profile/CreateProfile";
+import CreateProfile from "../profile-forms/CreateProfile";
 
 const Dashboard = ({
   getCurrentProfile,
