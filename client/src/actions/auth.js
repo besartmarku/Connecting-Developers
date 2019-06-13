@@ -39,6 +39,7 @@ export const register = ({ name, email, password }) => async dispatch => {
       "Content-Type": "application/json"
     }
   };
+
   const body = JSON.stringify({ name, email, password });
 
   try {
@@ -48,7 +49,8 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
-    console.log(res);
+
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 
