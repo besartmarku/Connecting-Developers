@@ -33,6 +33,7 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
+      console.log(user);
 
       if (user) {
         return res

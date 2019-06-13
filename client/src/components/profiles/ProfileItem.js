@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 const ProfileItem = ({
   profile: {
@@ -8,12 +9,25 @@ const ProfileItem = ({
     status,
     company,
     location,
-    skills
+    skills,
+    githubusername
   }
 }) => {
+  const [avatarUrl, setAvatarUrl] = useState();
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      const result = await axios(
+        `https://avatars.githubusercontent.com/${githubusername}`
+      );
+      setAvatarUrl(result.config.url);
+    }
+    fetchAvatar();
+  }, [avatarUrl]); // Or [] if effect doesn't need props or state
+
   return (
     <div className="profile bg-light">
-      <img src={avatar} alt="" className="round-img" />
+      <img src={avatarUrl} alt="" className="round-img" />
       <div>
         <h2>{name}</h2>
         <p>

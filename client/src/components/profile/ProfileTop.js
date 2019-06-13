@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import PropTypes from "prop-types";
 
 const ProfileTop = ({
@@ -8,12 +10,24 @@ const ProfileTop = ({
     location,
     website,
     social,
+    githubusername,
     user: { name, avatar }
   }
 }) => {
+  const [avatarUrl, setAvatarUrl] = useState();
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      const result = await axios(
+        `https://avatars.githubusercontent.com/${githubusername}`
+      );
+      setAvatarUrl(result.config.url);
+    }
+    fetchAvatar();
+  }, [avatarUrl]); // Or [] if effect doesn't need props or state
   return (
     <div className="profile-top bg-primary p-2">
-      <img className="round-img my-1" src={avatar} alt="" />
+      <img className="round-img my-1" src={avatarUrl} alt="" />
       <h1 className="large">{name}</h1>
       <p className="lead">
         {status} {company && <span> at {company}</span>}
