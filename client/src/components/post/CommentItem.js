@@ -11,7 +11,7 @@ const CommentItem = ({
   auth,
   deleteComment
 }) => {
-  console.log(githubusername);
+  console.log(CommentItem);
   return (
     <div className="post bg-white p-1 my-1">
       <div>
