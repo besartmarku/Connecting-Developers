@@ -3,28 +3,14 @@ const connectDB = require("./config/db");
 const path = require("path");
 
 const app = express();
-var cors = require("cors");
-var bodyParser = require("body-parser");
 
-//enables cors
-app.use(
-  cors({
-    allowedHeaders: ["sessionId", "Content-Type"],
-    exposedHeaders: ["sessionId"],
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false
-  })
-);
-//Connect db
+// Connect Database
 connectDB();
 
-//Innit Middleware
+// Init Middleware
 app.use(express.json({ extended: false }));
 
-app.get("/", (req, res) => res.send("API Running"));
-
-//Define Routes
+// Define Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
@@ -40,6 +26,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`Server started at ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
