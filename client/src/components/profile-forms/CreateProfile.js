@@ -5,6 +5,12 @@ import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 import { setAlert } from "../../actions/alert";
 
+const scrollToTop = () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 1);
+};
+
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     company: "",
@@ -212,7 +218,13 @@ const CreateProfile = ({ createProfile, history }) => {
           </Fragment>
         )}
 
-        <input type="submit" className="btn btn-primary my-1" />
+        <input
+          type="submit"
+          className="btn btn-primary my-1"
+          onClick={() => {
+            scrollToTop();
+          }}
+        />
         <Link className="btn btn-light my-1" to="/dashboard">
           Go Back
         </Link>
